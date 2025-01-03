@@ -163,7 +163,7 @@ class _CodeAutocompleteState extends State<_CodeAutocomplete> {
         return intent;
       },
     );
-    _selectAction = _CodeAutocompleteAction<CodeShortcutNewLineIntent>(
+    _selectAction = _CodeAutocompleteAction<CodeShortcutEditableIntent>(
       onInvoke: (intent) {
         final CodeAutocompleteEditingValue? value = _notifier?.value;
         if (value == null) {
@@ -186,6 +186,7 @@ class _CodeAutocompleteState extends State<_CodeAutocomplete> {
       actions: {
         CodeShortcutCursorMoveIntent: _navigateAction,
         CodeShortcutNewLineIntent: _selectAction,
+        CodeShortcutIndentIntent: _selectAction,
       },
       child: widget.child
     );
