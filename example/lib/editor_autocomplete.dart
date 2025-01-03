@@ -138,7 +138,7 @@ class _AutoCompleteEditorState extends State<AutoCompleteEditor> {
       ),
       child: CodeEditor(
         style: CodeEditorStyle(
-          fontSize: 18,
+          textStyle: const TextStyle(fontSize: 18),
           codeTheme: CodeHighlightTheme(
             languages: {
               'dart': CodeHighlightThemeMode(
