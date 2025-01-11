@@ -23,7 +23,7 @@ part '_code_extensions.dart';
 part '_code_field.dart';
 part '_code_find.dart';
 part '_code_formatter.dart';
-part '_code_highlight.dart';
+// part '_code_highlight.dart';
 part '_code_indicator.dart';
 part '_code_input.dart';
 part '_code_line.dart';

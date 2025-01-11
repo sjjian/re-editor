@@ -102,7 +102,6 @@ class _CodeEditableState extends State<_CodeEditable> with AutomaticKeepAliveCli
 
   late AnimationController _floatingCursorAnimationController;
 
-  late _CodeHighlighter _highlighter;
   late CodeIndicatorValueNotifier _codeIndicatorValueNotifier;
 
   @override
@@ -116,11 +115,6 @@ class _CodeEditableState extends State<_CodeEditable> with AutomaticKeepAliveCli
     widget.controller.addListener(_onCodeInputChanged);
     widget.inputController.addListener(_onCodeUserInputChanged);
 
-    _highlighter = _CodeHighlighter(
-      context: context,
-      controller: widget.controller,
-      theme: widget.codeTheme,
-    );
 
     _codeIndicatorValueNotifier = CodeIndicatorValueNotifier(null);
 
@@ -138,7 +132,6 @@ class _CodeEditableState extends State<_CodeEditable> with AutomaticKeepAliveCli
   @override
   void didUpdateWidget(covariant _CodeEditable oldWidget) {
     if (oldWidget.controller != widget.controller) {
-      _highlighter.controller = widget.controller;
       oldWidget.controller.removeListener(_onCodeInputChanged);
       widget.controller.addListener(_onCodeInputChanged);
     }
@@ -155,7 +148,6 @@ class _CodeEditableState extends State<_CodeEditable> with AutomaticKeepAliveCli
       widget.findController.addListener(_onCodeFindChanged);
     }
     if (oldWidget.codeTheme != widget.codeTheme) {
-      _highlighter.theme = widget.codeTheme;
     }
     super.didUpdateWidget(oldWidget);
   }
@@ -177,7 +169,6 @@ class _CodeEditableState extends State<_CodeEditable> with AutomaticKeepAliveCli
   void dispose() {
     widget.controller.removeListener(_onCodeInputChanged);
     widget.inputController.removeListener(_onCodeUserInputChanged);
-    _highlighter.dispose();
     _codeIndicatorValueNotifier.dispose();
     _cursorController.dispose();
     _floatingCursorAnimationController.dispose();
@@ -280,7 +271,7 @@ class _CodeEditableState extends State<_CodeEditable> with AutomaticKeepAliveCli
   }
 
   Widget _buildCodeField(ViewportOffset vertical, ViewportOffset? horizontal) {
-    return _CodeField(
+    return  _CodeField(
       key: widget.editorKey,
       verticalViewport: vertical,
       horizontalViewport: horizontal,
@@ -289,10 +280,8 @@ class _CodeEditableState extends State<_CodeEditable> with AutomaticKeepAliveCli
       selection: widget.controller.selection,
       highlightSelections: widget.findController.allMatchSelections,
       controller: widget.controller,
-      codes: widget.controller.codeLines,
       textStyle: widget.textStyle,
       hasFocus: widget.focusNode.hasFocus,
-      highlighter: _highlighter,
       showCursorNotifier: _cursorController,
       floatingCursorNotifier: widget.floatingCursorController,
       onRenderParagraphsChanged: (paragraphs) {
