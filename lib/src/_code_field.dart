@@ -1277,7 +1277,7 @@ class _CodeFieldRender extends RenderBox implements MouseTrackerAnnotation {
     return _allParagraphs[index].paragraph;
   }
 
-  List<CodeLineRenderParagraph> _buildAllRenderParagraphs() {
+  void _buildAllRenderParagraphs() {
     final double effectiveWidth;
     // 判断来自是否wrap, 如何wrap，水平方向不滚动, 设置 max width
     if (_horizontalViewport == null) {
@@ -1288,7 +1288,6 @@ class _CodeFieldRender extends RenderBox implements MouseTrackerAnnotation {
 
     double offset = 0;
     _allParagraphs.clear();
-    final List<CodeLineRenderParagraph> paragraphs = [];
     List<TextSpan> spans = buildTextSpan();
 
     _provider.updateBaseStyle(_textStyle);
@@ -1308,7 +1307,7 @@ class _CodeFieldRender extends RenderBox implements MouseTrackerAnnotation {
         break;
       }
     }
-    return paragraphs;
+    return;
   }
 
   List<TextSpan> buildTextSpan() {
