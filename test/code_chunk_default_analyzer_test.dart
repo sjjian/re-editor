@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path/path.dart';
-import 'package:re_editor/re_editor.dart';
+import 'package:sql_editor/re_editor.dart';
 
 void main() {
   const DefaultCodeChunkAnalyzer analyzer = DefaultCodeChunkAnalyzer();

@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:re_editor/re_editor.dart';
+import 'package:sql_editor/re_editor.dart';
 
 void main() {
   group('CodeLineEditingValue constructor ', () {
