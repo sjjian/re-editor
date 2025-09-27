@@ -1303,9 +1303,10 @@ class _CodeFieldRender extends RenderBox implements MouseTrackerAnnotation {
         chunkLongText: paragraph.trucated,
       ));
       offset += paragraph.height;
-      if (offset + paddingTop >= _verticalViewport.pixels + size.height) {
-        break;
-      }
+      // TODO: 下面的break会导致滚动窗口计算不准确， 先注释掉
+      // if (offset + paddingTop >= _verticalViewport.pixels + size.height) {
+      //   break;
+      // }
     }
     return;
   }
