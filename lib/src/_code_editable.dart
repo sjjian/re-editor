@@ -169,7 +169,7 @@ class _CodeEditableState extends State<_CodeEditable> with AutomaticKeepAliveCli
   void dispose() {
     widget.controller.removeListener(_onCodeInputChanged);
     widget.inputController.removeListener(_onCodeUserInputChanged);
-    _codeIndicatorValueNotifier.dispose();
+      _codeIndicatorValueNotifier.dispose();
     _cursorController.dispose();
     _floatingCursorAnimationController.dispose();
     widget.focusNode.removeListener(_onFocusChanged);
@@ -180,21 +180,26 @@ class _CodeEditableState extends State<_CodeEditable> with AutomaticKeepAliveCli
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final Widget child = _CodeScrollable(
+    final Widget child = Scrollable(
+      excludeFromSemantics: true,
       axisDirection: AxisDirection.down,
+      physics: const ClampingScrollPhysics(),
       controller: widget.scrollController.verticalScroller,
+      scrollBehavior: _ScrollBehavior(widget.scrollbarBuilder),
       viewportBuilder: (context, ViewportOffset vertical) {
         Widget codeField;
         if (widget.wordWrap) {
           codeField = _buildCodeField(vertical, null);
         } else {
-          codeField = _CodeScrollable(
+          codeField = Scrollable(
+            excludeFromSemantics: true,
             axisDirection: AxisDirection.right,
+            physics: const ClampingScrollPhysics(),
             controller: widget.scrollController.horizontalScroller,
+            scrollBehavior: _ScrollBehavior(widget.scrollbarBuilder),
             viewportBuilder: (context, ViewportOffset horizontal) {
               return _buildCodeField(vertical, horizontal);
             },
-            scrollbarBuilder: widget.scrollbarBuilder
           );
         }
         if (widget.controller.value.isInitial) {
@@ -252,7 +257,6 @@ class _CodeEditableState extends State<_CodeEditable> with AutomaticKeepAliveCli
           ),
         );
       },
-      scrollbarBuilder: widget.scrollbarBuilder
     );
     return CodeEditorTapRegion(
       onTapOutside: (_) {

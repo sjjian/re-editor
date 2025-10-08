@@ -2,34 +2,6 @@ part of re_editor;
 
 const double _kScrollbarThickness = 8.0;
 
-class _CodeScrollable extends StatelessWidget {
-
-  final AxisDirection axisDirection;
-  final ScrollController? controller;
-  final ViewportBuilder viewportBuilder;
-  final CodeScrollbarBuilder? scrollbarBuilder;
-
-  const _CodeScrollable({
-    required this.axisDirection,
-    this.controller,
-    required this.viewportBuilder,
-    this.scrollbarBuilder
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scrollable(
-      excludeFromSemantics: true,
-      controller: controller,
-      scrollBehavior: _ScrollBehavior(scrollbarBuilder),
-      viewportBuilder: viewportBuilder,
-      axisDirection: axisDirection,
-      physics: const ClampingScrollPhysics(),
-    );
-  }
-
-}
-
 class _ScrollBehavior extends MaterialScrollBehavior {
 
   final _ScrollPhysics physics;
