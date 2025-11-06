@@ -35,7 +35,7 @@ class _CodeEditable extends StatefulWidget {
   final CodeLineEditingController controller;
   final _CodeInputController inputController;
   final _CodeFloatingCursorController floatingCursorController;
-  final CodeHighlightTheme? codeTheme;
+  // final CodeHighlightTheme? codeTheme;
   final bool readOnly;
   final bool autofocus;
   final bool wordWrap;
@@ -76,7 +76,7 @@ class _CodeEditable extends StatefulWidget {
     required this.controller,
     required this.inputController,
     required this.floatingCursorController,
-    required this.codeTheme,
+    // required this.codeTheme,
     required this.readOnly,
     required this.autofocus,
     required this.wordWrap,
@@ -147,8 +147,8 @@ class _CodeEditableState extends State<_CodeEditable> with AutomaticKeepAliveCli
       oldWidget.findController.removeListener(_onCodeFindChanged);
       widget.findController.addListener(_onCodeFindChanged);
     }
-    if (oldWidget.codeTheme != widget.codeTheme) {
-    }
+    // if (oldWidget.codeTheme != widget.codeTheme) {
+    // }
     super.didUpdateWidget(oldWidget);
   }
 
