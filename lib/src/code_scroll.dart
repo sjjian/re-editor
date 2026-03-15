@@ -70,7 +70,7 @@ class _ScrollBehavior extends MaterialScrollBehavior {
       physics: physics,
       controller: details.controller ?? ScrollController(),
       scrollbarOrientation: orientation,
-      thumbVisibility: details.direction == AxisDirection.down,
+      thumbVisibility: false,
       child: child,
     );
   }
