@@ -3053,6 +3053,11 @@ class _CodeLineEditingCache {
       return;
     }
     if (!_node.isTail) {
+      // Caret/composing-only updates must not fork history after undo, or redo is lost.
+      if (_node.value.codeLines.equals(controller.value.codeLines)) {
+        _node.value = controller.value;
+        return;
+      }
       _appendNewNode();
       return;
     }

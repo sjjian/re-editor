@@ -93,6 +93,22 @@ void main() {
     });
   });
 
+  group('CodeLineEditingController undo/redo ', () {
+    test('caret move after undo does not clear redo', () {
+      final CodeLineEditingController c = CodeLineEditingController.fromText('a');
+      c.selection = CodeLineSelection.collapsed(index: 0, offset: 1);
+      c.replaceSelection('b');
+      expect(c.text, 'ab');
+      c.undo();
+      expect(c.text, 'a');
+      expect(c.canRedo, true);
+      c.selection = CodeLineSelection.collapsed(index: 0, offset: 0);
+      expect(c.canRedo, true);
+      c.redo();
+      expect(c.text, 'ab');
+    });
+  });
+
   group('CodeLineEditingController setter & getter ', () {
     test('`value`', () {
       final CodeLineEditingController controller = CodeLineEditingController();
